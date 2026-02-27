@@ -89,9 +89,7 @@ async function onMessageSendHandler(event: any) {
 }
 }
 
-console.log("ODC: launchevent loaded");
+
 Office.actions.associate("onMessageSendHandler", onMessageSendHandler);
 
-Office.onReady(() => {
-  console.log("ODC: Office.onReady");
-});
+Office.onReady(() => console.log("Office ready (launch event)"));

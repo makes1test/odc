@@ -91,6 +91,8 @@ module.exports = async (env, options) => {
       filename: "launchevent.html",
       template: "./src/launchevent/launchevent.html",
       chunks: ["bundle"],
+      inject: "body",
+      scriptLoading: "defer",
     }),
     ],
     devServer: {
