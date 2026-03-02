@@ -6,14 +6,18 @@
     "experimentalDecorators": true,
     "jsx": "react",
     "noEmitOnError": true,
-    "outDir": "lib",
+    "outDir": "dist",
     "sourceMap": true,
-    "target": "es5",
-    "downlevelIteration": true,
+    "target": "ES2019",
     "lib": [
       "es2015",
       "dom"
-    ]
+    ],
+    "module": "ESNext",
+    "moduleResolution": "Node",
+    "strict": true,
+    "skipLibCheck": true,
+
   },
   "exclude": [
     "node_modules",
@@ -23,5 +27,6 @@
   ],
   "ts-node": { 
     "files": true 
-  }
+  },
+  "include": ["src/**/*.ts"],
 }
