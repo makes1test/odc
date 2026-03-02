@@ -24,9 +24,7 @@ function isAllowedDomain(domain: string): boolean {
   return false;
 }
 
-function getRecipientsAsync(
-  field: Office.Recipients
-): Promise<Office.EmailAddressDetails[]> {
+function getRecipientsAsync(field: Office.Recipients): Promise<any[]> {
   return new Promise((resolve, reject) => {
     field.getAsync((res) => {
       if (res.status === Office.AsyncResultStatus.Failed) {
@@ -63,7 +61,7 @@ async function checkDomains(): Promise<DomainCheckResult> {
   if (notAllowed.length > 0) {
     return {
       ok: false,
-      message: `Nicht erlaubte Domain(s): ${notAllowed.join(", ")}.`,
+      message: `Nicht erlaubte Domain(s): ${notAllowed.join(", ")}.`
     };
   }
 
@@ -74,22 +72,22 @@ async function onMessageSendHandler(event: any) {
   try {
     const result: DomainCheckResult = await checkDomains();
 
-    if (result.ok === false) {
-      event.completed({
-        allowEvent: false,
-        errorMessage: result.message,
-        sendModeOverride: Office.MailboxEnums.SendModeOverride.PromptUser, 
+    if (!result.ok) {
+    event.completed({
+      allowEvent: false,
+      errorMessage: result.message,
+        //sendModeOverride: Office.MailboxEnums.SendModeOverride.PromptUser, 
       });
       return;
     }
 
     event.completed({ allowEvent: true });
   } catch (e: any) {
-  event.completed({ allowEvent: true });
+  event.completed({
+  allowEvent: false,
+  errorMessage: "Senden nicht möglich: Add-in Fehler bei Domainprüfung.",
+    });
+  }
 }
-}
-
 
 Office.actions.associate("onMessageSendHandler", onMessageSendHandler);
-
-Office.onReady(() => console.log("Office ready (launch event)"));
