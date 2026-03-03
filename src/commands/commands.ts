@@ -5,17 +5,31 @@
 
 /* global Office */
 
-Office.onReady(() => {
+//Office.onReady(() => {
   // If needed, Office.js is ready to be called.
-});
+//});
 
 /**
  * Shows a notification when the add-in command is executed.
- * @param event
+ * //@param event
  */
+/*function action(event: Office.AddinCommands.Event) {
+  const message: Office.NotificationMessageDetails = {
+    type: Office.MailboxEnums.ItemNotificationMessageType.InformationalMessage,
+    message: "Performed action.",
+    icon: "Icon.80x80",
+    persistent: true,
+  };
 
-function action(event: Office.AddinCommands.Event) {
+  // Show a notification message.
+  /*Office.context.mailbox.item.notificationMessages.replaceAsync(
+    "ActionPerformanceNotification",
+    message
+  );
+
+  // Be sure to indicate when the add-in command function is complete.
   event.completed();
 }
 
-Office.actions.associate("action", action);
+// Register the function with Office.
+Office.actions.associate("action", action);*/
